@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/redirect/{service}', 'App\Http\Controllers\SocialController@redirect');
+Route::get('/callback/{service}', 'App\Http\Controllers\SocialController@callback');

@@ -1,18 +1,18 @@
 
-@include("includes.header");
+@include("includes.header")
 
 
-  @yield("content");
+  @yield("content")
 
-  <!-- @include("includes.features");
-  @include("includes.about_us");
+  <!-- @include("includes.features")
+  @include("includes.about_us")
 
-  @include("includes.services");
+  @include("includes.services")
 
-  @include("includes.portfolio"); 
+  @include("includes.portfolio") 
 
-  @include("includes.contact");-->
+  @include("includes.contact")-->
  
 
-  @include("includes.footer");
+  @include("includes.footer")
   
