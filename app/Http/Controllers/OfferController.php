@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\OfferRequest;
 use Illuminate\Http\Request;
 use App\Models\Offer;
 use Illuminate\Support\Facades\Validator;
-
+use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 class OfferController extends Controller
 {
    public function offerQuery(){
-      //$result=Offer::select('id','name')->get();
+      $result=Offer::select('id','name')->get();
       //------------------->insert to db
     //   $result=Offer::create([
     //       'name'=>'offer3',
@@ -26,27 +27,29 @@ class OfferController extends Controller
     return view('offers.add_offer');
    }
 
-   public function store(Request $request){
+   public function store(OfferRequest $request){
 
-       // validation code here
-       $roles=[
-           'name'=>"required |max:100|unique:offers,name",
-           'price'=>"required|numeric",
-           'details'=>"required",
-       ];
-       $messages=[
-           'name.required' => trans("messages.offer name required"),
-           'price.numeric' =>  __("offer price numeric")
-       ];
-       $validator=Validator::make($request->all(),$roles,$messages);
-       if($validator ->fails()){
-           return redirect()->back()->withErrors($validator)->withInput($request->all());
-       }
+       // validation code here Or done in OfferRequest
+
     Offer::create([
-        'name'=> $request->name,
+        'name_en'=> $request->name_en,
+        'name_ar'=> $request->name_ar,
         'price'=> $request->price,
-        'details'=> $request->details,
+        'details_en'=> $request->details_en,
+        'details_ar'=> $request->details_ar,
     ]);
-       return redirect()->back()->with(['success'=>'Offer Added successfully']);
+       return redirect()->back()->with(['success'=>__('messages.Offer Added successfully')]);
+   }
+
+
+   public function showAllOffers(){
+       //get data from database
+       $offers= Offer::select('id',
+           'name_'.LaravelLocalization::getCurrentLocale().' as name',
+           'price',
+           'details_'.LaravelLocalization::getCurrentLocale().' as details'
+       )->get();
+
+      return view('offers.show_all_offers')->with(compact('offers'));
    }
 }

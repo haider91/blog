@@ -52,12 +52,13 @@ https://templatemo.com/tm-563-seo-dream
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
             <a href="index.html" class="logo">
-              <h4>SEO Dream <img src="assets/images/logo-icon.png" alt=""></h4>
+              <h4>{{__('messages.Site Name')}} <img src="assets/images/logo-icon.png" alt=""></h4>
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-                <li class="active"> <a href="#">Home</a></li>
+                <li class="active"> <a href="#">{{__('messages.About US')}}</a></li>
+                <li class="active"> <a href="#">{{__('messages.Contact US')}}</a></li>
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                     <li class="scroll-to-section"><a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"> {{ $properties['native'] }}</a></li>
                 @endforeach

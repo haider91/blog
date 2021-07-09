@@ -25,7 +25,7 @@ Route::get('/callback/{service}', 'App\Http\Controllers\SocialController@callbac
 Route::get('/offer', 'App\Http\Controllers\OfferController@offerQuery');
 Route::get('/offer/add', 'App\Http\Controllers\OfferController@addOffer');
 Route::post('/offer/store', 'App\Http\Controllers\OfferController@store')->name('offer.store');
-
+Route::get('offer/all','App\Http\Controllers\OfferController@showAllOffers');
 
 
 
